@@ -50,10 +50,6 @@ como por ejemplo:
     comparado con el otro.
 -   El algoritmo exacto se vuelve inviable para N\>10. Sin embargo,
     podemos usar el algoritmo aproximado para Ns mucho más grandes!
--   A la hora de programar el algoritmo exacto, encontramos siempre 2
-    soluciones con el mismo recorrido. Más tarde nos dimos cuenta de que
-    correspondían a la misma solución, en sentido inverso.
--   Etc\...
 
 ## Anexo(s):
 
@@ -80,19 +76,19 @@ Relación del número generado con el anterior.
 
 - Método de la transformada inversa:
 
-
-
 ![[Pasted image 20240123133011.png]]
 
 
 - Método de aceptación rechazo:
-
 
 ![[Pasted image 20240123133047.png]]
 
 
 
 ### Discusión:
+- Podemos observar como el generador de números aleatorios de numpy los genera de una forma muy uniforme, por otro lado, el generador de fibonacci es el que mejor se desempeña de los que hemos desarrollado, mientras tanto, el generador lineal congruencial, los genera de forma menos uniforme y además es muy sensible a los parámentros utilizados.
+- En la imagen donde hemos representado la relación del siguiente número con el anterior, hemos ordenado de "mejor" a "peor" generador para ver como "cubren más huecos" es decir, en los mejores generadores desde cada número se puede acceder a más números.
+- El método de la transformada inversa es sencillo y más eficiente, pero requiere poder operar de forma analítica la función, lo cual puede no ser viable mientras que el método de aceptación aunque es menos ineficiente (ya que tenemos que generar más números aleatorios para conseguir los que buscamos) se puede realizar con cualquier distribución.
 
 ### Anexo:
 
@@ -101,13 +97,18 @@ Relación del número generado con el anterior.
 ### Resumen y Objetivos:
 
 ### Resultados:
-
+- Estimación de pi con el método de Buffon. 
+![[Pasted image 20240127184645.png]]
 - Error en la convergencia en función del número de tiradas y la longitud de la aguja:
 ![[Pasted image 20240123134450.png]]
 
 ### Discusión:
-
+- En la imagen de la convergencia del error, vemos como hay que "tirar del orden de 10000 agujas" para obtener una precisión de unos 2-3 decimales en la estimación de $\pi$. 
+- Haciendo un ajuste, hemos demostrado que el error converge con $N^\frac{-1}{2}$, como vimos en la teoría para los métodos de Monte Carlo. 
+- También podemos ver como al aumentar el tamaño de la aguja, se reduce el error como vimos en la teoría.
 ## Anexo:
+- [buffon_needle.py](Master Tecnologías físicas/optimización en sistemas físicos y aplicaciones industriales/Optimization Algorithms/2 Números aleatorios, Métodos de Montecarlo/Aguja de Buffon/buffon_needle.py)  (Aquí implementamos la lógica para la simulación del problema).
+- [buffon_needle.ipynb](Master Tecnologías físicas/optimización en sistemas físicos y aplicaciones industriales/Optimization Algorithms/2 Números aleatorios, Métodos de Montecarlo/Aguja de Buffon/buffon_needle.ipynb) (Aquí ejecutamos el código, calculamos los tiempos de ejecución y hacemos el ajuste).
 
 ---
 # Tema 3: Algoritmos para la optimización en espacios de alta dimensionalidad.
