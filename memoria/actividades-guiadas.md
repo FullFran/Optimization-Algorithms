@@ -133,6 +133,26 @@ Relación del número generado con el anterior.
 
 ## Resultados:
 
+- Resultados obtenidos por el simulated annealing con 30 ciudades:
+
+![](images/sa30.png)
+
+- Resultados obtenidos por el simulated annealing con 90 ciudades:
+
+![](images/sa90.png)
+
+
+- Resultados obtenidos por el algoritmo genético con 30 ciudades:
+
+![](images/ga30.png)
+
+- Resultados obtenidos por el algoritmo genético con 90 ciudades:
+
+![](images/ga90.png)
+
+
+
+
 
 ## Discusión:
 

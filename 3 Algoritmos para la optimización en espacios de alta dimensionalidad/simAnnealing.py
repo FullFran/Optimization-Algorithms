@@ -12,12 +12,13 @@ def ciudades(N)->np.ndarray:
 
 class simulatedAnnealing():
     '''Clase para resolver el problema del viajante con el algoritmo de simulated annealing'''
-    def __init__(self, cities, T0=100, Tf = 0.001,  coolingRate=0.9999):
+    def __init__(self, cities, T0=100, Tf = 0.001,  coolingRate=0.9999, stoopingcriteria=10000, maxIter=1000000):
         '''
         cities: array con las coordenadas de las ciudades
         T0: temperatura inicial
         Tf: temperatura final
         coolingRate: factor de enfriamiento
+        stoopingcriteria: criterio de parada (número de iteraciones sin mejora)
         '''
         self.ciudades = cities
         self.N = len(self.ciudades)
@@ -27,7 +28,7 @@ class simulatedAnnealing():
         self.route = list(np.arange(self.N))+[0]
         self.dist_matrix = self.dist_matrix()
         self.total_dist = self.totalDistance(self.route)
-
+        self.stoopingcriteria = stoopingcriteria
         self.distances = [] 
         self.temperatures = []
         self.maxIter = -np.log(self.T/self.Tf)/np.log(self.coolingRate)
@@ -47,6 +48,7 @@ class simulatedAnnealing():
         Función para calcular la distancia total de una ruta.
         '''
         return np.sum(self.dist_matrix[route,np.roll(route,-1)])
+    
     def newRoute(self, method='swap'):
         '''
         Función para generar una nueva ruta a partir de la actual.
@@ -77,6 +79,7 @@ class simulatedAnnealing():
         '''
         # iteramos hasta que la temperatura sea menor que la temperatura final
         i = 0
+        c = 0
         while self.T > self.Tf:
             # Guardamos la distancia y la temperatura en cada iteración
             self.distances.append(self.total_dist)
@@ -106,6 +109,14 @@ class simulatedAnnealing():
 
                 print(f'Distancia total = {self.total_dist:.2f}, Temperatura = {self.T:.3f}')
 
+            if self.total_dist == self.distances[-1]:
+                c += 1
+            else:
+                c = 0
+            
+            if c == self.stoopingcriteria:
+                break
+
         clear_output(wait=True)
         print(f'Iteración {i} de {self.maxIter:.0f}')
 
@@ -114,7 +125,7 @@ class simulatedAnnealing():
         self.plotRoute()
         
 
-    def graficAnnealing(self, newRouteMethod='swap'):
+    def graficRun(self, newRouteMethod='swap'):
         '''
         Función para simular el enfriamiento de un sistema.
         newRouteMethod: método para generar la nueva ruta. Puede ser 'swap' o 'inverse'
@@ -154,18 +165,31 @@ class simulatedAnnealing():
         Función para mostrar la ruta y la evolución de la distancia.
         '''
         
-        plt.figure(figsize=(10,5))
-        plt.subplot(1,2,1)
+        plt.figure(figsize=(15,15))
+        plt.subplot(2,2,1)
         plt.plot(self.ciudades[self.route,0],self.ciudades[self.route,1],'o-')
         plt.title(f'Distancia total = {self.total_dist:.2f}')
         plt.xlabel('x')
         plt.ylabel('y')
         for i in range(self.N):
             plt.text(self.ciudades[i][0]*1.01, self.ciudades[i][1], i, fontsize=10)
-        plt.subplot(1,2,2)
+        plt.subplot(2,2,2)
         plt.title('Evolución de la distancia')
         plt.plot(self.distances, '-')
         plt.xlabel('Iteración')
         plt.ylabel('Distancia total')
+
+        plt.subplot(2,2,3)
+        plt.title('Evolución de la temperatura')
+        plt.plot(self.temperatures, '-')
+        plt.xlabel('Iteración')
+        plt.ylabel('Temperatura')
+
+        plt.subplot(2,2,4)
+        plt.title(f'Evolución de la distancia')
+        plt.loglog(self.distances, '-')
+        plt.xlabel('Iteración')
+        plt.ylabel('Distancia total')
+
 
         plt.show()

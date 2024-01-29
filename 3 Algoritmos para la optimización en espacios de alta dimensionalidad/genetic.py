@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from IPython.display import clear_output
 
 class GeneticAlgorithm():
-    def __init__(self, ciudades, poblationSize=100, mutationRate=0.05, generations=10, elitism=True, elitePercentage=0.01, tournamentSize=5):
+    def __init__(self, ciudades, poblationSize=100, mutationRate=0.05, generations=10, stopcriteria = 20, elitism=True, elitePercentage=0.01, tournamentSize=5):
         self.ciudades = ciudades
         self.N = len(ciudades)
         self.route = list(np.arange(self.N))+[0]
@@ -11,6 +11,7 @@ class GeneticAlgorithm():
         self.poblationSize = poblationSize
         self.mutationRate = mutationRate
         self.generations = generations
+        self.stopcriteria = stopcriteria
         self.elitism = elitism
         self.elitePercentage = elitePercentage
         self.tournamentSize = tournamentSize
@@ -75,7 +76,7 @@ class GeneticAlgorithm():
         Función para mostrar la ruta
         '''
 
-        plt.figure(figsize=(10,10))
+        plt.figure(figsize=(15,15))
         plt.subplot(2,2,1)
         plt.plot(self.ciudades[self.route,0],self.ciudades[self.route,1],'o-')
         plt.title(f'Distancia total = {self.distanciaTotal:.2f}')
@@ -94,7 +95,14 @@ class GeneticAlgorithm():
         plt.subplot(2,2,3)
         plt.hist(self.fitness, bins=20)
         plt.title('Fitness')
+
+        plt.subplot(2,2,4)
+        plt.loglog(self.distances)
+        plt.title('Distancia total')
+        plt.xlabel('Generación')
+        plt.ylabel('Distancia total')
         plt.show()
+    
     def getElite(self):
         '''
         Función para obtener la elite de la población
@@ -162,22 +170,46 @@ class GeneticAlgorithm():
         '''
         Función para ejecutar el algoritmo genético
         '''
+        # vamos a añadir un stopcriteria para que se detenga cuando 
+        #la distancia total no mejore
+
         self.distances.append(self.distanciaTotal)
+        c = 0
         for i in range(self.generations):
             self.nextGeneration()
             clear_output(wait=True)
             print(f'Generación {i+1}/{self.generations}')
             print(f'Distancia total = {self.distanciaTotal:.2f}')
+            if self.distances[-1] == self.distanciaTotal:
+                c+=1
             self.distances.append(self.distanciaTotal)
+            if c == self.stopcriteria:
+                break
         self.plotRoute()
         plt.show()
 
-    def probar(self):
-        for route in self.getElite():
-            self.route = route
-            self.distanciaTotal = self.totalDistance(route)
+    def graficRun(self):
+        '''
+        Función para ejecutar el algoritmo genético
+        mostrando la gráfica de la ruta en cada generación
+        '''
+        self.distances.append(self.distanciaTotal)
+        c = 0
+        for i in range(self.generations):
+            self.nextGeneration()
+            clear_output(wait=True)
+            print(f'Generación {i+1}/{self.generations}')
+            print(f'Distancia total = {self.distanciaTotal:.2f}')
+            
+            if self.distances[-1] == self.distanciaTotal:
+                c+=1
+            else:
+                c = 0
+
+            self.distances.append(self.distanciaTotal)
+
             self.plotRoute()
             plt.show()
-            print(len(self.getElite()))
-            clear_output(wait=True)
+            if c == self.stopcriteria:
+                break
         
