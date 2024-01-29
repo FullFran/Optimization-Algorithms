@@ -30,7 +30,11 @@ En esta actividad vamos a resolver el problema del viajante (TSP) con un método
 ## Resultados:
 
 - Comparación de resultados obtenidos
+
+
 ![](images/Pasted%20image%2020231211170401.png)
+
+
 ![](images/Pasted%20image%2020231211171805.png)
 
 
@@ -39,7 +43,10 @@ En estas imágenes podemos ver la diferencia entre el camino obtenido con el mé
 
 
 - Comparación de tiempos de ejecución en función del número de ciudades.
+
+
 ![](images/Pasted%20image%2020240127180621.png)
+
 
 En la gráfica podemos ver la comparación del tiempo de ejecución en función el número de ciudades para el algoritmo exacto y el aproximado, como podemos observar, el orden de complejidad del algoritmo aproximado es mucho menos que la del algoritmo exacto. Además podemos ver como el algoritmo aproximado escala de forma polinómica ($O(n^2$)) y el exacto escala peor ($O(n!)$).
 
@@ -73,9 +80,11 @@ Enumerar aquí los códigos usados:
 Nota: En el archivo ejercicios.ipynb se encuentran los ejercicios planteados en las diapositivas resueltos.
 
 ![](images/Pasted%20image%2020240123123656.png)
+
 Histogramas de los números generados.
 
 ![](images/Pasted%20image%2020240127115142.png)
+
 Relación del número generado con el anterior.
 
 - Método de la transformada inversa:
@@ -102,8 +111,11 @@ Relación del número generado con el anterior.
 
 ### Resultados:
 - Estimación de pi con el método de Buffon. 
+
 ![](images/Pasted%20image%2020240127184645.png)
+
 - Error en la convergencia en función del número de tiradas y la longitud de la aguja:
+
 ![](images/Pasted%20image%2020240123134450.png)
 
 ### Discusión:
