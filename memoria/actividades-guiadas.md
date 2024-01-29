@@ -157,6 +157,10 @@ Relación del número generado con el anterior.
 ## Discusión:
 
 ## Anexo:
+- [simAnnealing.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/3%20Algoritmos%20para%20la%20optimización%20en%20espacios%20de%20alta%20dimensionalidad/simAnnealing.py) (Aquí se implementa la lógica del simulated annealing para resolver el TSP).
+- [simAnnealing.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/3%20Algoritmos%20para%20la%20optimización%20en%20espacios%20de%20alta%20dimensionalidad/simAnnealing.ipynb) (Aquí están los resultados obtenidos con el simulated annealing).
+- [genetic.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/3%20Algoritmos%20para%20la%20optimización%20en%20espacios%20de%20alta%20dimensionalidad/genetic.py) (Aquí se implementa la lógica del algoritmo genético para resolver el TSP).
+- [genetic.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/3%20Algoritmos%20para%20la%20optimización%20en%20espacios%20de%20alta%20dimensionalidad/genetic.ipynb) (Aquí están los resultados obtenidos con el algoritmo genético).
 
 ---
 
