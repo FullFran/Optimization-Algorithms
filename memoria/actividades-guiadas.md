@@ -1,3 +1,5 @@
+
+
 # Optimización en Sistemas Físicos
 
 # y Aplicaciones Industriales
@@ -28,8 +30,8 @@ En esta actividad vamos a resolver el problema del viajante (TSP) con un método
 ## Resultados:
 
 - Comparación de resultados obtenidos
-![[Pasted image 20231211170401.png]]
-![[Pasted image 20231211171805.png]]
+![[images/Pasted image 20231211170401.png]]
+![[images/Pasted image 20231211171805.png]]
 
 En estas imágenes podemos ver la diferencia entre el camino obtenido con el método aproximado y el exacto. Se puede observar como el resultado obtenido por el método aproximado no tiene por qué dar la solución óptima para el problema.
 
