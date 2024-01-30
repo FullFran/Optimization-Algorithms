@@ -75,6 +75,9 @@ Enumerar aquí los códigos usados:
 ## Generadores de números aleatorios.
 
 ### Resumen y Objetivos:
+En esta actividad vamos a implementar varios métodos para la generación de números aleatorios y compararlos entre ellos. En concreto:
+- Implementar un generador congruencial lineal y uno de fibonacci. Comparando histogramas entre ellos generando $10^6$ números y la relación del siguiente número en función del anterior para los distintos generadores.
+- Implementar métodos para generar números aleatorios distribuidos conforme a una distribución dada por el método de la transformada inversa y el método de aceptación rechazo.
 
 ### Resultados:
 Nota: En el archivo ejercicios.ipynb se encuentran los ejercicios planteados en las diapositivas resueltos.
@@ -101,14 +104,17 @@ Relación del número generado con el anterior.
 ### Discusión:
 - Podemos observar como el generador de números aleatorios de numpy los genera de una forma muy uniforme, por otro lado, el generador de fibonacci es el que mejor se desempeña de los que hemos desarrollado, mientras tanto, el generador lineal congruencial, los genera de forma menos uniforme y además es muy sensible a los parámentros utilizados.
 - En la imagen donde hemos representado la relación del siguiente número con el anterior, hemos ordenado de "mejor" a "peor" generador para ver como "cubren más huecos" es decir, en los mejores generadores desde cada número se puede acceder a más números.
-- El método de la transformada inversa es sencillo y más eficiente, pero requiere poder operar de forma analítica la función, lo cual puede no ser viable mientras que el método de aceptación aunque es menos ineficiente (ya que tenemos que generar más números aleatorios para conseguir los que buscamos) se puede realizar con cualquier distribución.
+- El método de la transformada inversa es sencillo y más eficiente, pero requiere poder operar de forma analítica la función, lo cual puede no ser viable mientras que el método de aceptación rechazo, aunque es menos ineficiente (ya que tenemos que generar más números aleatorios para conseguir los que buscamos) se puede realizar con cualquier distribución.
 
 ### Anexo:
 - [generadoresAleatorios.py](https://github.com/FullFran/Optimization-Algorithms/tree/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Generación%20de%20números%20Aleatorios/generadoresAleatorios.py) (Aquí se implementa la lógica de los generadores de números aleatorios).
 - [ejercicios.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Generación%20de%20números%20Aleatorios/ejercicios.ipynb) (Aquí se realizan los ejercicios propuestos en la asignatura, comparando los distintos generadores de números aleatorios).
 
 ### Resumen y Objetivos:
-
+En esta actividad realizaremos el experimento de la aguja de Buffon, comprobando el orden de convergencia de los métodos de montecarlo. En concreto:
+- Implementar un código para estimar el valor de $\pi$ empleando el método de la aguja de Buffon.
+- Estudiar la convergencia, determinando que converge con un orden de $\frac{1}{\sqrt N}$.
+- Comparar la convergencia para distintos tamaños de la aguja.
 ### Resultados:
 - Estimación de pi con el método de Buffon. 
 
@@ -130,6 +136,9 @@ Relación del número generado con el anterior.
 # Tema 3: Algoritmos para la optimización en espacios de alta dimensionalidad.
 
 ## Resumen y Objetivos:
+En esta actividad resolveremos el TSP mediante simulated annealing y un algoritmo genético. En concreto:
+- Implementaremos los métodos de simulated annealing y algoritmo genético para resolver el TSP.
+- Resolveremos el TSP para distintos números de ciudades con ambos métodos, mostrando la evolución de la distancia de la ruta.
 
 ## Resultados:
 
@@ -155,6 +164,9 @@ Relación del número generado con el anterior.
 
 
 ## Discusión:
+- En las gráficas podemos observar como tanto el simulated annealing como el algoritmo genético se desempeñan bien a la hora de resolver el TSP reduciendo la distancia recorrida con el tiempo hasta aproximarse a la solución exacta.
+- En las gráficas del simulated annealing, podemos observar como en las primeras iteraciones, encontrándose a mayores temperaturas, la distancia recorrida no se reduce a penas, pero el algoritmo está explorando más estados, hasta que se alcanza una temperatura crítica (igual que en el [modelo de issing](https://github.com/FullFran/Optimization-Algorithms/tree/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Trabajo%20Issing/Code)) a la cual el sistema empieza a 'congelarse' y converge a soluciones con menor distancia recorrida. Esto es debido a que al bajar la temperatura, la probabilidad de aceptar peores soluciones disminuye.
+- En el algoritmo genético, podemos observar como en cada generación la distancia de la ruta del mejor individuo siempre se reduce o se mantiene, esto es debido a que hemos contemplado Elitismo, haciendo que los mejores individuos pasen directamente a la siguiente generación. Además podemos ver como la distribución del fitness conforme avanzan las generaciones, la mayoría de individuos tienen un mayor fitness (ver usando el método graficRun de la clase GeneticAlgorithm).
 
 ## Anexo:
 - [simAnnealing.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/3%20Algoritmos%20para%20la%20optimización%20en%20espacios%20de%20alta%20dimensionalidad/simAnnealing.py) (Aquí se implementa la lógica del simulated annealing para resolver el TSP).
