@@ -182,6 +182,8 @@ En esta actividad resolveremos el TSP mediante simulated annealing y un algoritm
 
 ## Resultados:
 
+![](images/capacidadHopfield.png)
+
 ## Discusión:
 
 ## Anexo:
