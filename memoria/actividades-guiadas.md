@@ -8,11 +8,19 @@
 
 Curso 2023-24
 
+![](images/sa90.png)
 # Portfolio de actividades guiadas
 
 ###### Francisco Manuel Olmedo Cortés
 
 
+
+<br>
+<br>
+
+Nota: Todo lo que aparece aquí se encuentra en este repositorio: 
+
+[Optimization-Algorithms](https://github.com/FullFran/Optimization-Algorithms/tree/main)
 
 ---
 
@@ -52,9 +60,6 @@ En la gráfica podemos ver la comparación del tiempo de ejecución en función 
 
 
 ## Discusión:
-
-Incluir aquí cualquier comentario de interés referente a la activdad,
-como por ejemplo:
 
 -   Observamos que para Ns muy pequeños, el algoritmo exacto es más
     rápido, pero este se vuelve extremadamente lento para Ns grandes,
@@ -179,11 +184,41 @@ En esta actividad resolveremos el TSP mediante simulated annealing y un algoritm
 # Tema 4: Clasificación de eventos y detección de fallos.
 
 ## Resumen y Objetivos:
+En esta actividad vamos a implementar una red neuronal artificial de Hopfield. En concreto vamos a:
+- Entrenar la red con distintos patrones.
+- Ver la evolución de la energía en la dinámica de la red.
+- Recuperar las imágenes con las que ha sido entrenada la red, pudiendo observar la memoria asociativa.
+- Estudiar el límite de almacenamiento entrenando redes de distintos tamaños con distintos patrones aleatorios e intentar recuperar un patrón desde ese patrón con un error aleatorio introducido.
+
 
 ## Resultados:
 
+- Patrones con los que se ha entrenado a la red con sus correspondientes energías.
+
+![](images/entrenamientoHopfield.png)
+
+
+- Reconstrucción de una imagen usando la red de hopfield entrenada en los 4 patrones anteriores. Reconstruida a partir de la imágen con ruido. Mostrando la evolución de la energía, en negativo para poder representar en doble logarítmico para apreciar mejor la evolución.
+
+![](images/recoHopfield.png)
+
+- Reconstrucción de imagen de un gato previamente entrenado a partir de una imagen de un gato distinto. Poniendo de manifiesto la memoria asociativa.
+
+![](images/animecat.png)
+
+- Atractor espureo, aparentemente combinación de patrones obtenido añadiendo como input una imagen distinta a con las que se entrenó la red.
+
+![](images/epureo.png)
+
+- Error relativo al tamaño de la red en función del número de patrones entre el tamaño de la red. Podemos ver como se obtiene el resultado visto en teoría para el límite de almacenamiento. (La banda de color representa la dispersión de los resultados).
+
 ![](images/capacidadHopfield.png)
+
+
 
 ## Discusión:
 
 ## Anexo:
+- [hopfield.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/4%20Clasificaci%C3%B3n%20de%20eventos%20y%20detecci%C3%B3n%20de%20fallos/hopfiled.py) (Aquí se implementa la lógica del modelo de Hopfield).
+- [hopfield.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/4%20Clasificaci%C3%B3n%20de%20eventos%20y%20detecci%C3%B3n%20de%20fallos/hopfield.ipynb) (Aquí se entrena la red de Hopfield con distintos patrones y se observa como recupera el patrón original a partir de un patrón con ruido).
+- [capacidad_red.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/4%20Clasificaci%C3%B3n%20de%20eventos%20y%20detecci%C3%B3n%20de%20fallos/capacidad_red.ipynb) (Aquí se estudia la capacidad de la red para almacenar patrones en función del tamaño de la red).
