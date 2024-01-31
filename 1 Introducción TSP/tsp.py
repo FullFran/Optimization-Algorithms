@@ -19,6 +19,10 @@ def H(x):
 
 # Función para resolver de forma exacta
 def TSP(x):
+    ''' 
+    Función para resolver el TSP de forma exacta
+    x: lista de ciudades
+    '''
     # Eliminamos el primer elemento
     perm = x[1:]
     caminos = list(permutations(perm))
@@ -33,6 +37,13 @@ def TSP(x):
     return optimo, dist_optima
 
 def vmc(punto, puntos_restantes):
+    ''' 
+    Función para obtener el vecino más cercano a un punto 
+    de entre los restantes.
+
+    punto: punto actual
+    puntos_restantes: lista de puntos restantes
+    '''
     dist_min = float('inf')
     vecino_mas_cercano = None
     for i, punto_restante in enumerate(puntos_restantes):
@@ -48,6 +59,11 @@ def vmc(punto, puntos_restantes):
 
 # Vamos a programar un método del vecino más cercano
 def metodo_vecino_cercano(y):
+    ''' 
+    Función para resolver el TSP mediante el método del vecino más cercano
+    y: lista de ciudades
+    '''
+
     puntos_restantes = list(y)
     dist_menor = float('inf')
     camino_menor = None

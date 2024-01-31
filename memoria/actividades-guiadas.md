@@ -35,9 +35,10 @@ En esta actividad vamos a resolver el problema del viajante (TSP) con un método
 - Con las mismas ciudades, buscaremos una solución aproximada, partiendo de una ciudad y saltando siempre a la más cercana (esto lo haremos para cada ciudad). Este es el método del vecino más cercano.
 - Finalmente representaremos las posiciones de las ciudades y los caminos seguidos en el plano.
 - Calculamos el tiempo invertido en calcular la solución con cada método y representaremos esto en función de N.
+
 ## Resultados:
 
-- Comparación de resultados obtenidos
+- Comparación de resultados obtenidos:
 
 
 ![](images/Pasted%20image%2020231211170401.png)
@@ -58,14 +59,13 @@ En estas imágenes podemos ver la diferencia entre el camino obtenido con el mé
 
 En la gráfica podemos ver la comparación del tiempo de ejecución en función el número de ciudades para el algoritmo exacto y el aproximado, como podemos observar, el orden de complejidad del algoritmo aproximado es mucho menos que la del algoritmo exacto. Además podemos ver como el algoritmo aproximado escala de forma polinómica ($O(n^2$)) y el exacto escala peor ($O(n!)$).
 
-
 ## Discusión:
 
 -   Observamos que para Ns muy pequeños, el algoritmo exacto es más
     rápido, pero este se vuelve extremadamente lento para Ns grandes,
     comparado con el otro.
 -   El algoritmo exacto se vuelve inviable para N\>10. Sin embargo,
-    podemos usar el algoritmo aproximado para Ns mucho más grandes!
+    podemos usar el algoritmo aproximado para Ns mucho más grandes.
 
 ## Anexo(s):
 
@@ -75,6 +75,7 @@ Enumerar aquí los códigos usados:
 - [resultados.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/1%20Introducción%20TSP/resultados.ipynb) (Aquí calculamos los tiempos de ejecución para el método exacto y el método del vecino más cercano y los comparamos, además graficamos la solución para el problema generando ciudades de forma aleatoria).
 
 ---
+
 # Tema 2: Fundamentos físico-matemáticos de los algoritmos de optimización.
 
 ## Generadores de números aleatorios.
@@ -87,33 +88,40 @@ En esta actividad vamos a implementar varios métodos para la generación de nú
 ### Resultados:
 Nota: En el archivo ejercicios.ipynb se encuentran los ejercicios planteados en las diapositivas resueltos.
 
+- Histogramas de los números generados.
+  
 ![](images/Pasted%20image%2020240123123656.png)
 
-Histogramas de los números generados.
+Podemos ver como el generador de fibonacci genera números de forma más uniforme que el congruencial lineal, el cual con los primeros parámetros es el que tiene menor uniformidad. Por otro lado, el de numpy es muy uniforme.
+
+- Relación del siguiente número con el anterior.
 
 ![](images/Pasted%20image%2020240127115142.png)
 
-Relación del número generado con el anterior.
+Podemos ver como el generador lineal congruencial con los primeros parámetros abarca poco espacio por lo que es 'menos aleatorio' mientras que el de fibonnaci abarca más espacio y el de numpy rellena casi todo el espacio.
 
 - Método de la transformada inversa:
 
 ![](images/Pasted%20image%2020240123133011.png)
 
+Podemos observar como los números se distribullen de forma exponencial.
 
 - Método de aceptación rechazo:
 
 ![](images/Pasted%20image%2020240123133047.png)
 
-
+Podemos observar como los números se distribullen según las distribuciones dadas.
 
 ### Discusión:
-- Podemos observar como el generador de números aleatorios de numpy los genera de una forma muy uniforme, por otro lado, el generador de fibonacci es el que mejor se desempeña de los que hemos desarrollado, mientras tanto, el generador lineal congruencial, los genera de forma menos uniforme y además es muy sensible a los parámentros utilizados.
+- Podemos observar como el generador de números aleatorios de numpy los genera números aleatorios de una forma muy uniforme, por otro lado, el generador de fibonacci es el que mejor se desempeña de los que hemos desarrollado, mientras tanto, el generador lineal congruencial, los genera de forma menos uniforme y además es muy sensible a los parámentros utilizados.
 - En la imagen donde hemos representado la relación del siguiente número con el anterior, hemos ordenado de "mejor" a "peor" generador para ver como "cubren más huecos" es decir, en los mejores generadores desde cada número se puede acceder a más números.
 - El método de la transformada inversa es sencillo y más eficiente, pero requiere poder operar de forma analítica la función, lo cual puede no ser viable mientras que el método de aceptación rechazo, aunque es menos ineficiente (ya que tenemos que generar más números aleatorios para conseguir los que buscamos) se puede realizar con cualquier distribución.
 
 ### Anexo:
 - [generadoresAleatorios.py](https://github.com/FullFran/Optimization-Algorithms/tree/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Generación%20de%20números%20Aleatorios/generadoresAleatorios.py) (Aquí se implementa la lógica de los generadores de números aleatorios).
 - [ejercicios.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Generación%20de%20números%20Aleatorios/ejercicios.ipynb) (Aquí se realizan los ejercicios propuestos en la asignatura, comparando los distintos generadores de números aleatorios).
+
+## Aguja de Buffon:
 
 ### Resumen y Objetivos:
 En esta actividad realizaremos el experimento de la aguja de Buffon, comprobando el orden de convergencia de los métodos de montecarlo. En concreto:
@@ -125,14 +133,30 @@ En esta actividad realizaremos el experimento de la aguja de Buffon, comprobando
 
 ![](images/Pasted%20image%2020240127184645.png)
 
+Podemos observar como a mayor número de iteraciones, el resultado oscila menos, convergiendo al valor de pi dado por numpy (linea naranja)
+
 - Error en la convergencia en función del número de tiradas y la longitud de la aguja:
 
 ![](images/Pasted%20image%2020240123134450.png)
 
+Se pude observar como al aumentar el tamaño de la aguja (d) el erro disminuye, esto concuerda con lo visto teóricamente. Además se ve como el orden de convergencia se ajusta a $N^{-1/2}$.
+
+- Se realizó un ajuste lineal del error representado en doble logarítmico para estimar el orden de convergencia, para suavizar los resultados se realizó la media del orden de convergencia estimado para varias simulaciones obteniendo un resultado de 
+ $$co=-0.501\pm0.01$$   
+
+- Al realizar el experimento tirando una aguja nueva en cada iteración manteniendo las anteriores, el orden de convergencia es distinto:
+
+![](images/buffoncon.png)
+
+- Realizando una regresión al igual que en el caso anterior obtenemos un resultado de:
+
+$$co = -1.64\pm0.04$$
+
 ### Discusión:
 - En la imagen de la convergencia del error, vemos como hay que "tirar del orden de 10000 agujas" para obtener una precisión de unos 2-3 decimales en la estimación de $\pi$. 
-- Haciendo un ajuste, hemos demostrado que el error converge con $N^\frac{-1}{2}$, como vimos en la teoría para los métodos de Monte Carlo. 
+- Haciendo un ajuste, hemos demostrado que el error converge con $N^\frac{-1}{2}$, como vimos en la teoría para los métodos de Monte Carlo.
 - También podemos ver como al aumentar el tamaño de la aguja, se reduce el error como vimos en la teoría.
+- Una cosa curiosa que no sucedió fue que al realizar el experimento generando cada vez una aguja nueva en vez de generar n agujas nuevas en cada iteración, el orden de convergencia nos salía distinto de lo esperado como vemos en la imagen. 
 ## Anexo:
 - [buffon_needle.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Aguja%20de%20Buffon/buffon_needle.py)  (Aquí implementamos la lógica para la simulación del problema).
 - [buffon_needle.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Aguja%20de%20Buffon/buffon_needle.ipynb) (Aquí ejecutamos el código, calculamos los tiempos de ejecución y hacemos el ajuste).

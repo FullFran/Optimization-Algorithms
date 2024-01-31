@@ -3,6 +3,9 @@ import numpy as np
 
 def pi_buffon_needle(d: float, l: float, n: int):
     '''
+    Función para calcular el valor de pi mediante el método de la aguja de Buffon
+    creando en cada iteración una aguja nueva, hasta llegar a n agujas.
+
     d = longitud de la aguja
     l = distancia entre las rectas
     n = número de agujas
@@ -29,6 +32,14 @@ def pi_buffon_needle(d: float, l: float, n: int):
     return pi, err, pi_acum, err_acum
 
 def buffon_needle_random(d: float,l: float,n: int):
+    ''' 
+    Función para calcular el valor de pi mediante el método de la aguja de Buffon
+    pero creando en cada iteración n agujas nuevas en vez de una a una.
+
+    d = longitud de la aguja
+    l = distancia entre las rectas
+    n = número de agujas
+    '''
     pi = []
     err = []
     for i in range(1,n+1):
