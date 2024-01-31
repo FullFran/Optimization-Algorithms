@@ -3,7 +3,20 @@ import matplotlib.pyplot as plt
 from IPython.display import clear_output
 
 class GeneticAlgorithm():
+    '''
+    Clase para implementar el algoritmo genético para resolver el TSP
+    '''
     def __init__(self, ciudades, poblationSize=100, mutationRate=0.05, generations=10, stopcriteria = 20, elitism=True, elitePercentage=0.01, tournamentSize=5):
+        ''' 
+        Ciudades: array con las coordenadas de las ciudades
+        poblationSize: tamaño de la población
+        mutationRate: probabilidad de mutación
+        generations: número de generaciones
+        stopcriteria: número de generaciones sin mejora para detener el algoritmo
+        elitism: booleano para indicar si se usa elitismo
+        elitePercentage: porcentaje de la población que se considera elite
+        tournamentSize: tamaño del torneo para la selección
+        '''
         self.ciudades = ciudades
         self.N = len(ciudades)
         self.route = list(np.arange(self.N))+[0]
@@ -49,26 +62,25 @@ class GeneticAlgorithm():
         '''
         new_route = indiviudo.copy()
 
+        # Elegimos uno de los dos métodos de mutación
+        # de forma aleatoria
         method = np.random.choice(['swap','inverse'])
 
+        # Seleccionamos el trozo a mutar
         i,j = np.random.randint(1,self.N,2)
         while j==i:
             j = np.random.randint(1,self.N)
 
-
+        # Generamos la nueva ruta con un swap aleatorio:
         if method == 'swap':
             new_route[i],new_route[j] = new_route[j],new_route[i]
+        
         # Generamos la nueva ruta con un inverse aleatorio:
         if method == 'inverse':
             if i>j:
                 i,j = j,i
             new_route[i:j+1] = new_route[i:j+1][::-1]
         
-        if method == 'swap':
-            if i>j:
-                i,j = j,i
-            new_route[i:j+1] = new_route[i:j+1][::-1]
-
         return new_route
 
     def plotRoute(self):
@@ -146,18 +158,26 @@ class GeneticAlgorithm():
         Función para generar la siguiente generación
         '''
         newPoblation = []
+
+        # Si se usa elitismo, añadimos la elite a la nueva población
         if self.elitism:
             newPoblation.extend(self.getElite())
+
+        # El resto de la población la generamos mediante cruces
         while len(newPoblation) < self.poblationSize:
+            # Seleccionamos dos padres mediante torneo distintos
             parent1 = self.poblation[self.tournamentSelection()]
             parent2 = parent1
             while np.array_equal(parent1,parent2):
                 parent2 = self.poblation[self.tournamentSelection()]
+            # Cruzamos los padres para obtener un hijo
             child = self.crossover(parent1,parent2)
+            # Mutamos el hijo con una probabilidad mutationRate
             if np.random.random() < self.mutationRate:
                 child = self.mutation(child)
             newPoblation.append(child)
 
+        # Actualizamos las variables
         self.poblation = np.array(newPoblation)
         self.fitness = np.array([self.getFitness(i) for i in self.poblation])
         self.bestRoute = self.poblation[np.argmax(self.fitness)]

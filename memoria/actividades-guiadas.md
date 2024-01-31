@@ -6,7 +6,7 @@
 
 ###### Maśter Universitario en Tecnología Física: Investigación y Aplicaciones
 
-Curso 2023-24
+Curso 2023-2024
 
 ![](images/sa90.png)
 # Portfolio de actividades guiadas
@@ -18,7 +18,7 @@ Curso 2023-24
 <br>
 <br>
 
-Nota: Todo lo que aparece aquí se encuentra en este repositorio: 
+Nota: Todos los códigos que aparecen aquí se encuentra en este repositorio: 
 
 [Optimization-Algorithms](https://github.com/FullFran/Optimization-Algorithms/tree/main)
 
@@ -175,20 +175,26 @@ En esta actividad resolveremos el TSP mediante simulated annealing y un algoritm
 
 ![](images/sa30.png)
 
+Resultado obtenido para 30 ciudades en 2.4s.
+
 - Resultados obtenidos por el simulated annealing con 90 ciudades:
 
 ![](images/sa90.png)
+
+Resultado obtenido para 90 ciudades en 3.5s.
 
 
 - Resultados obtenidos por el algoritmo genético con 30 ciudades:
 
 ![](images/ga30.png)
 
+Resultado obtenido para 30 ciudades en 10.2s.
+
 - Resultados obtenidos por el algoritmo genético con 90 ciudades:
 
 ![](images/ga90.png)
 
-
+Resultado obtenido para 90 ciudades en 31.6s.
 
 
 
@@ -222,11 +228,13 @@ En esta actividad vamos a implementar una red neuronal artificial de Hopfield. E
 ![](images/entrenamientoHopfield.png)
 
 
-- Reconstrucción de una imagen usando la red de hopfield entrenada en los 4 patrones anteriores. Reconstruida a partir de la imágen con ruido. Mostrando la evolución de la energía, en negativo para poder representar en doble logarítmico para apreciar mejor la evolución.
+- Reconstrucción de una imagen usando la red de hopfield entrenada en los 4 patrones anteriores. Reconstruida a partir de la imagen con ruido. 
 
 ![](images/recoHopfield.png)
 
-- Reconstrucción de imagen de un gato previamente entrenado a partir de una imagen de un gato distinto. Poniendo de manifiesto la memoria asociativa.
+Se muestra la evolución de la energía, en negativo para poder representar en doble logarítmico para apreciar mejor la evolución (es decir, aunque veamos que aumenta el número en la gráfica, la energía se está haciendo menor osea más negativa, por lo que se está minimizando la energía de la red, como esperabamos ya que el modelo de hopfield implementado es una variación del algoritmo de metrópolis con T=0).
+
+- Reconstrucción de imagen de un gato previamente entrenado a partir de una imagen de un gato distinto. Poniendo de manifiesto la memoria asociativa al reconstruir un patrón a partir de otro con características similares.
 
 ![](images/animecat.png)
 
@@ -238,9 +246,15 @@ En esta actividad vamos a implementar una red neuronal artificial de Hopfield. E
 
 ![](images/capacidadHopfield.png)
 
+Podemos observar como el límite de almacenamiento de patrones en la red de Hopfield concuerda con lo visto en teoría ya que a partir de ahí al evolucionar comienza a 'añadir errores' al patrón cuando lo dejamos evolucionar.
+Al representar los distintos tamaños, podemos observar como la pendiente de los errores relativos tras el cambio de comportamiento parece crecer con el tamaño de la red.
 
 
 ## Discusión:
+- Podemos ver como el modelo de Hopfield evoluciona hacia mínimos de energía en la red. Esto como hemos dicho es debido a que sigue la misma lógica que el algoritmo de Metropolis a temperatura 0. Durante el entrenamiento lo que hacemos al definir la matriz de pesos es definir la energía de nuestro sistema de forma que tenga mínimos en los patrones con los cuales hemos entrenado la red. Así la red evolucionará hacia esos patrones.
+- Hemos visto la capacidad del modelo para 'recordar' patrones a partir de patrones que comparten características como hemos visto con el patrón con ruido introducido o el gato distinto al gato con el cual fue entrenado. Además también recupera patrones a partir de 'trozos' de los mismos y más. Pudiendo ver la capacidad de memoria asociativa del modelo.
+- También hemos visto Uno de los problemas de este modelo, que es la aparición de patrones estables distintos de los patrones con los cuales entrenamos a la red, como es el caso de los atractores espureos como el mostrado en la imagen.
+- Por último, hemos realizado una simulación para comprobar el límite de almacenamiento de patrones del modelo. Realizando varias veces el proceso de entrenar con n patrones aleatorios y recordar uno de ellos añadiendole un error. Con esta simulación hemos visto como este se encuentra entorno al $N=0.14I$ como vimos en teoría.
 
 ## Anexo:
 - [hopfield.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/4%20Clasificaci%C3%B3n%20de%20eventos%20y%20detecci%C3%B3n%20de%20fallos/hopfiled.py) (Aquí se implementa la lógica del modelo de Hopfield).
