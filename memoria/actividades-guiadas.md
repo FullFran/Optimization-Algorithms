@@ -156,7 +156,7 @@ $$co = -1.64\pm0.04$$
 - En la imagen de la convergencia del error, vemos como hay que "tirar del orden de 10000 agujas" para obtener una precisión de unos 2-3 decimales en la estimación de $\pi$. 
 - Haciendo un ajuste, hemos demostrado que el error converge con $N^\frac{-1}{2}$, como vimos en la teoría para los métodos de Monte Carlo.
 - También podemos ver como al aumentar el tamaño de la aguja, se reduce el error como vimos en la teoría.
-- Una cosa curiosa que no sucedió fue que al realizar el experimento generando cada vez una aguja nueva en vez de generar n agujas nuevas en cada iteración, el orden de convergencia nos salía distinto de lo esperado como vemos en la imagen. 
+- Una cosa curiosa que nos sucedió fue que al realizar el experimento generando cada vez una aguja nueva en vez de generar n agujas nuevas en cada iteración, el orden de convergencia nos salía distinto de lo esperado como vemos en la imagen. Es incluso posible que se trate de un error en la implementación de la simulación, pero decidí dejarlo porque me resulta curioso. Se encuentra al final del notebook la simulación. 
 ## Anexo:
 - [buffon_needle.py](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Aguja%20de%20Buffon/buffon_needle.py)  (Aquí implementamos la lógica para la simulación del problema).
 - [buffon_needle.ipynb](https://github.com/FullFran/Optimization-Algorithms/blob/main/2%20Números%20aleatorios%2C%20Métodos%20de%20Montecarlo/Aguja%20de%20Buffon/buffon_needle.ipynb) (Aquí ejecutamos el código, calculamos los tiempos de ejecución y hacemos el ajuste).
