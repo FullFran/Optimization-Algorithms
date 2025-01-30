@@ -1,4 +1,4 @@
-```markdown
+
 # Optimization-Algorithms
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
@@ -117,10 +117,6 @@ Optimization-Algorithms/
 - **Montecarlo**: Validación empírica de órdenes de convergencia en métodos estocásticos.
 - **Hopfield**: Demostración de memoria asociativa y límites teóricos de almacenamiento.
 
----
-
-## Contribución
-Las contribuciones son bienvenidas. Por favor, abra un *Issue* o envíe un *Pull Request* siguiendo las guías de contribución.
 
 ---
 
@@ -131,4 +127,3 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 
 Desarrollado por [Francisco Manuel Olmedo Cortés](https://github.com/FullFran)  
 *Máster en Tecnología Física: Investigación y Aplicaciones - 2023/2024*
-```
